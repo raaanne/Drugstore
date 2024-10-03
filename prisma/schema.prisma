@@ -21,7 +21,7 @@ model medicine {
   type               DrugType
   price              Float                @default(0) @db.Double
   createdAt          DateTime             @default(now())
-  updatedAt          DateTime             @default(now())
+  updatedAt          DateTime             @default(now()) // curd medicine melibatkan tabel medicine
   photo              String               @default("") //setiap mengubah harus mengsinkronkan ulang (npx prisma migrate dev (sinkron database)) (npx prisma generate(sinkron dengan prisma client))
   transaction_detail transaction_detail[]
 }
@@ -32,7 +32,7 @@ model transaction {
   order_date         DateTime             @default(now())
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @default(now()) @updatedAt
-  transaction_detail transaction_detail[]
+  transaction_detail transaction_detail[] // crud transaksi melibatkan transaksi dan transaksi detail
 }
 
 model transaction_detail {
@@ -53,7 +53,7 @@ model admin {
   email     String   @unique @default("")
   password  String   @default("")
   createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt // crud admin melibatakan tabel admin 
 }
 
 enum DrugType {
